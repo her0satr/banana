@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
-import { WelcomePage } from '../welcome/welcome';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
 @Component({
@@ -10,16 +10,29 @@ import { WelcomePage } from '../welcome/welcome';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  userData = {};
+  responseData : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public app: App,
+    private authService: AuthServiceProvider) {
   }
 
   login() {
-    this.navCtrl.push(TabsPage);
+    console.log(this.userData);
+    this.authService.postData(this.userData, 'login').then((result) => {
+      this.responseData = result;
+      if (this.responseData.error != null) {
+        console.log(this.responseData.error.text);
+      } else {
+        localStorage.setItem('userData', JSON.stringify(this.responseData.userData));
+        this.navCtrl.push(TabsPage, {}, { animate: false });
+      }
+    }, (err) => {
+      console.error('Connection fail');
+    });
   }
   
   welcome() {

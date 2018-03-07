@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
     <img src="assets/imgs/bananalogo.png" class="navbarLogo" />
     <ion-title>Home</ion-title>
   </ion-navbar>
@@ -7,6 +7,8 @@
 
 <ion-content padding>
   <h2>Welcome to Banana Project</h2>
+  <h3>Hii {{userDetails.name}}</h3>
+  <h4>{{userDetails.email}}</h4>
 
   <button ion-button color="primary" (click)="logout()">Logout</button>
 </ion-content>

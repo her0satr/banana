@@ -15,7 +15,10 @@ export class SignupPage {
   userData = {};
   responseData : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private authService: AuthServiceProvider) {
   }
 
   ionViewDidLoad() {

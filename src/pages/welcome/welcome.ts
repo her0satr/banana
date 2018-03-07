@@ -14,10 +14,13 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider) {
-    if (this.authService.isLogin()) {
-      this.navCtrl.push(HomePage);
-    }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private authService: AuthServiceProvider) {
+      if (this.authService.isLogin()) {
+        this.navCtrl.push(TabsPage);
+      }
   }
 
   signup() {
