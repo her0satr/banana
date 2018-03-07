@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
+import { WelcomePage } from '../welcome/welcome';
 
 @IonicPage()
 @Component({
@@ -10,7 +11,7 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App) {
   }
 
   ionViewDidLoad() {
@@ -19,5 +20,10 @@ export class LoginPage {
 
   login() {
     this.navCtrl.push(TabsPage);
+  }
+  
+  welcome() {
+    const root = this.app.getRootNav();
+    root.popToRoot();
   }
 }
