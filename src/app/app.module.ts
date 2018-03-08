@@ -15,6 +15,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { MomentModule } from 'angular2-moment';
+import { LinkyModule } from 'angular-linky';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     WelcomePage
   ],
   imports: [
-    BrowserModule, HttpModule,
+    BrowserModule, HttpModule, MomentModule, LinkyModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

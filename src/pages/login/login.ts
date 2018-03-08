@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, ToastController } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
@@ -17,21 +17,21 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public app: App,
+    private toastCtrl: ToastController,
     private authService: AuthServiceProvider) {
   }
 
   login() {
-    console.log(this.userData);
     this.authService.postData(this.userData, 'login').then((result) => {
       this.responseData = result;
       if (this.responseData.error != null) {
-        console.log(this.responseData.error.text);
+        this.toastCtrl.create({ message: this.responseData.error.text, duration: 1500, position: 'top' }).present();
       } else {
         localStorage.setItem('userData', JSON.stringify(this.responseData.userData));
         this.navCtrl.push(TabsPage, {}, { animate: false });
       }
     }, (err) => {
-      console.error('Connection fail');
+      this.authService.toast('Connection fail');
     });
   }
   

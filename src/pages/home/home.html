@@ -8,7 +8,23 @@
 <ion-content padding>
   <h2>Welcome to Banana Project</h2>
   <h3>Hii {{userDetails.name}}</h3>
-  <h4>{{userDetails.email}}</h4>
+  
+  <ion-item id="updateBox">
+    <textarea [(ngModel)]="page.feed"></textarea>
+    <ion-row>
+      <button ion-button color="energy" (click)="feedUpdate()">Update</button>
+    </ion-row>
+  </ion-item>
+  
+  <ion-card *ngFor="let item of dataSet">
+    <ion-item>
+      <ion-icon name="trash" item-right class="ionicons" (click)="deleteFeed(item)"></ion-icon>
+      <ion-card-content>
+        <p [innerHTML]="item.feed | linky"></p>
+        <span>{{ this.convertTime(item.created) | amTimeAgo}}</span>
+      </ion-card-content>
+    </ion-item>
+  </ion-card>
 
   <button ion-button color="primary" (click)="logout()">Logout</button>
 </ion-content>

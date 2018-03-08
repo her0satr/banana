@@ -1,5 +1,6 @@
 import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { ToastController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 let apiUrl = 'http://localhost/PHP-Slim-Restful/api/';
@@ -7,8 +8,7 @@ let apiUrl = 'http://localhost/PHP-Slim-Restful/api/';
 @Injectable()
 export class AuthServiceProvider {
 
-  constructor(public http: Http) {
-    console.log('Hello AuthServiceProvider Provider');
+  constructor(public http: Http, private toastCtrl: ToastController) {
   }
 
   isLogin() {
@@ -42,5 +42,10 @@ export class AuthServiceProvider {
           reject(err);
         }
     });
+  }
+
+  toast(message) {
+    let obj = this.toastCtrl.create({ message: message, duration: 1500, position: 'top' });
+    obj.present();
   }
 }

@@ -1,8 +1,15 @@
+page-home {
+}
 .navbarLogo {
     height: 25px;
     float: left;
     margin-left: 10px;
 }
-page-home {
-
+#updateBox {
+    textarea {
+        width: 100%;
+    }
+}
+.ionicons {
+    cursor: pointer;
 }
