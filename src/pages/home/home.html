@@ -16,15 +16,19 @@
     </ion-row>
   </ion-item>
   
-  <ion-card *ngFor="let item of dataSet">
+  <ion-card *ngFor="let item of dataSet; let i = index">
     <ion-item>
-      <ion-icon name="trash" item-right class="ionicons" (click)="deleteFeed(item)"></ion-icon>
+      <ion-icon name="trash" item-right class="ionicons" (click)="deleteFeed(item, i)"></ion-icon>
       <ion-card-content>
         <p [innerHTML]="item.feed | linky"></p>
         <span>{{ this.convertTime(item.created) | amTimeAgo}}</span>
       </ion-card-content>
     </ion-item>
   </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
   <button ion-button color="primary" (click)="logout()">Logout</button>
 </ion-content>
